@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductsCell" id="gTV-IL-0wX" customClass="ProductsCell" customModule="Pos1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="154" height="201"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="154" height="201"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMt-eU-SjF" customClass="CardView" customModule="Pos1" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="27" width="154" height="160"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LM7-ie-bWg">
+                                <rect key="frame" x="25" y="-27" width="104" height="104"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.74901960779999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="Kv1-db-wcR"/>
+                                    <constraint firstAttribute="height" constant="104" id="eDB-YP-pnN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="52"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken Rice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufm-nA-LQW">
+                                <rect key="frame" x="2" y="84" width="150" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <color key="textColor" red="0.03944797069" green="0.0" blue="0.25177004930000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Rice &amp; 1 Chicken" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81x-Qn-hhc">
+                                <rect key="frame" x="2" y="110" width="150" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQf-64-TiE">
+                                <rect key="frame" x="2" y="130" width="150" height="17"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                <color key="textColor" red="0.03944797069" green="0.0" blue="0.25177004930000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SQf-64-TiE" firstAttribute="top" secondItem="81x-Qn-hhc" secondAttribute="bottom" constant="8" id="10G-we-zad"/>
+                            <constraint firstItem="SQf-64-TiE" firstAttribute="leading" secondItem="EMt-eU-SjF" secondAttribute="leading" constant="2" id="E43-Dp-vgc"/>
+                            <constraint firstItem="Ufm-nA-LQW" firstAttribute="leading" secondItem="EMt-eU-SjF" secondAttribute="leading" constant="2" id="FDg-gk-6ML"/>
+                            <constraint firstItem="81x-Qn-hhc" firstAttribute="centerX" secondItem="EMt-eU-SjF" secondAttribute="centerX" id="INW-Fs-Tfx"/>
+                            <constraint firstItem="Ufm-nA-LQW" firstAttribute="top" secondItem="LM7-ie-bWg" secondAttribute="bottom" constant="7" id="QgT-Zd-AAk"/>
+                            <constraint firstAttribute="trailing" secondItem="Ufm-nA-LQW" secondAttribute="trailing" constant="2" id="YJH-qr-U1X"/>
+                            <constraint firstAttribute="height" constant="160" id="ahG-eR-IOS"/>
+                            <constraint firstAttribute="bottom" secondItem="SQf-64-TiE" secondAttribute="bottom" constant="13" id="cKb-Fj-xXB"/>
+                            <constraint firstItem="LM7-ie-bWg" firstAttribute="centerX" secondItem="EMt-eU-SjF" secondAttribute="centerX" id="d4g-Kr-Nzt"/>
+                            <constraint firstAttribute="trailing" secondItem="SQf-64-TiE" secondAttribute="trailing" constant="2" id="e2P-AJ-LCq"/>
+                            <constraint firstAttribute="trailing" secondItem="81x-Qn-hhc" secondAttribute="trailing" constant="2" id="lTs-Vs-eCs"/>
+                            <constraint firstItem="81x-Qn-hhc" firstAttribute="top" secondItem="Ufm-nA-LQW" secondAttribute="bottom" constant="3.5" id="mI8-2A-Hgz"/>
+                            <constraint firstItem="SQf-64-TiE" firstAttribute="centerX" secondItem="EMt-eU-SjF" secondAttribute="centerX" id="qEl-vZ-Usl"/>
+                            <constraint firstItem="Ufm-nA-LQW" firstAttribute="centerX" secondItem="EMt-eU-SjF" secondAttribute="centerX" id="qdI-Al-TDg"/>
+                            <constraint firstItem="LM7-ie-bWg" firstAttribute="top" secondItem="EMt-eU-SjF" secondAttribute="top" constant="-27" id="s5F-Vc-cqG"/>
+                            <constraint firstItem="81x-Qn-hhc" firstAttribute="leading" secondItem="EMt-eU-SjF" secondAttribute="leading" constant="2" id="zIC-lE-KhN"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="CardCornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="EMt-eU-SjF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="27" id="bxa-Nx-neD"/>
+                <constraint firstItem="EMt-eU-SjF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dwn-Dd-eEK"/>
+                <constraint firstAttribute="trailing" secondItem="EMt-eU-SjF" secondAttribute="trailing" id="pLh-ZX-4VP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="154" height="177"/>
+            <point key="canvasLocation" x="116.8" y="109.29535232383809"/>
+        </collectionViewCell>
+    </objects>
+</document>
