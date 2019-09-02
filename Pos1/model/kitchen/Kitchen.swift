@@ -1,21 +1,20 @@
 //
 //	RootClass.swift
 //
-//	Create by Aboelnaga on 19/8/2019
-//	Copyright © 2019. All rights reserved.
+//	Create by Aboelnaga on 1/9/2019
 
 import Foundation 
 import ObjectMapper
 
 
-class Orders : NSObject, NSCoding, Mappable{
+class Kitchen : NSObject, NSCoding, Mappable{
 
-	var data : [OrdersData]?
+	var data : [KitchenData]?
 	var status : Bool?
 
 
 	class func newInstance(map: Map) -> Mappable?{
-		return Orders()
+		return Kitchen()
 	}
 	required init?(map: Map){}
 	private override init(){}
@@ -27,10 +26,9 @@ class Orders : NSObject, NSCoding, Mappable{
 		
 	}
 
-
     @objc required init(coder aDecoder: NSCoder)
 	{
-         data = aDecoder.decodeObject(forKey: "data") as? [OrdersData]
+         data = aDecoder.decodeObject(forKey: "data") as? [KitchenData]
          status = aDecoder.decodeObject(forKey: "status") as? Bool
 
 	}

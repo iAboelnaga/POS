@@ -53,6 +53,12 @@
 		80B2F9EF230C84CD00AF45AA /* proDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2F9ED230C84CD00AF45AA /* proDetails.swift */; };
 		80C61D6522CCDDCC00B488B0 /* KitchenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C61D6422CCDDCC00B488B0 /* KitchenVC.swift */; };
 		80C61D6722CCDEDE00B488B0 /* KitchenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C61D6622CCDEDE00B488B0 /* KitchenCell.swift */; };
+		80D6B0C3231C670F00F3BD45 /* InOutTablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */; };
+		80D6B0C4231C670F00F3BD45 /* InOutTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C2231C670F00F3BD45 /* InOutTables.swift */; };
+		80D6B0C9231C812300F3BD45 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C7231C812200F3BD45 /* Invoice.swift */; };
+		80D6B0CA231C812300F3BD45 /* InvoiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C8231C812300F3BD45 /* InvoiceData.swift */; };
+		80D6B0CD231C813400F3BD45 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0CB231C813400F3BD45 /* Kitchen.swift */; };
+		80D6B0CE231C813400F3BD45 /* KitchenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0CC231C813400F3BD45 /* KitchenData.swift */; };
 		C16C6AAA22EB2E8D006CA588 /* MohabMowafy.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = C16C6AA922EB2E8D006CA588 /* MohabMowafy.mobileprovision */; };
 		C16C6AAC22EB2F54006CA588 /* development.cer in Resources */ = {isa = PBXBuildFile; fileRef = C16C6AAB22EB2F54006CA588 /* development.cer */; };
 /* End PBXBuildFile section */
@@ -105,6 +111,12 @@
 		80B2F9ED230C84CD00AF45AA /* proDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proDetails.swift; sourceTree = "<group>"; };
 		80C61D6422CCDDCC00B488B0 /* KitchenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenVC.swift; sourceTree = "<group>"; };
 		80C61D6622CCDEDE00B488B0 /* KitchenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenCell.swift; sourceTree = "<group>"; };
+		80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTablesData.swift; sourceTree = "<group>"; };
+		80D6B0C2231C670F00F3BD45 /* InOutTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTables.swift; sourceTree = "<group>"; };
+		80D6B0C7231C812200F3BD45 /* Invoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		80D6B0C8231C812300F3BD45 /* InvoiceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceData.swift; sourceTree = "<group>"; };
+		80D6B0CB231C813400F3BD45 /* Kitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
+		80D6B0CC231C813400F3BD45 /* KitchenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenData.swift; sourceTree = "<group>"; };
 		A272B432B5B4B64953842835 /* Pods_Pos1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pos1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA4A6C825070508B839B7EB /* Pods-Pos1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pos1.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pos1/Pods-Pos1.release.xcconfig"; sourceTree = "<group>"; };
 		C16C6AA922EB2E8D006CA588 /* MohabMowafy.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = MohabMowafy.mobileprovision; sourceTree = "<group>"; };
@@ -251,6 +263,9 @@
 		80A1C6DA22C910DC00178D3D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				80D6B0C6231C809300F3BD45 /* kitchen */,
+				80D6B0C5231C809000F3BD45 /* invoices */,
+				80D6B0C0231C66EF00F3BD45 /* tables */,
 				80B2F9E3230C847C00AF45AA /* order */,
 				80753D682308ABE200547821 /* products */,
 				80753D632308AA7D00547821 /* categories */,
@@ -268,6 +283,33 @@
 				80B2F9E7230C84BC00AF45AA /* OrdersData.swift */,
 			);
 			path = order;
+			sourceTree = "<group>";
+		};
+		80D6B0C0231C66EF00F3BD45 /* tables */ = {
+			isa = PBXGroup;
+			children = (
+				80D6B0C2231C670F00F3BD45 /* InOutTables.swift */,
+				80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */,
+			);
+			path = tables;
+			sourceTree = "<group>";
+		};
+		80D6B0C5231C809000F3BD45 /* invoices */ = {
+			isa = PBXGroup;
+			children = (
+				80D6B0C7231C812200F3BD45 /* Invoice.swift */,
+				80D6B0C8231C812300F3BD45 /* InvoiceData.swift */,
+			);
+			path = invoices;
+			sourceTree = "<group>";
+		};
+		80D6B0C6231C809300F3BD45 /* kitchen */ = {
+			isa = PBXGroup;
+			children = (
+				80D6B0CB231C813400F3BD45 /* Kitchen.swift */,
+				80D6B0CC231C813400F3BD45 /* KitchenData.swift */,
+			);
+			path = kitchen;
 			sourceTree = "<group>";
 		};
 		B91B891D4050764B7D9A40A5 /* Frameworks */ = {
@@ -415,28 +457,34 @@
 				800F4C2A22E7C206009B93A2 /* signInViewController.swift in Sources */,
 				80A1C6D522C8F77A00178D3D /* InvoicesCell.swift in Sources */,
 				8040B22E22E72656008D50BE /* DriversCell.swift in Sources */,
+				80D6B0C9231C812300F3BD45 /* Invoice.swift in Sources */,
 				80A1C6D722C910AE00178D3D /* OrdersVC.swift in Sources */,
 				801D4FC522CA89F200532C52 /* ProductsCell.swift in Sources */,
 				80C61D6522CCDDCC00B488B0 /* KitchenVC.swift in Sources */,
+				80D6B0CD231C813400F3BD45 /* Kitchen.swift in Sources */,
 				804CF46222F20B8E0059CC6B /* APIsRequests.swift in Sources */,
 				80B2F9E9230C84BC00AF45AA /* OrderDetails.swift in Sources */,
 				80B2F9EB230C84BC00AF45AA /* OrdersData.swift in Sources */,
 				80A1C6D322C8F70800178D3D /* InvoicesVC.swift in Sources */,
+				80D6B0CA231C812300F3BD45 /* InvoiceData.swift in Sources */,
 				800F4C2D22E7C206009B93A2 /* scrollViewController.swift in Sources */,
 				805B6D9822E88CC30097FCD6 /* DeliveryVC.swift in Sources */,
 				8041EBF222CB86E900C83A4B /* AddNewEmpVC.swift in Sources */,
 				8040B22A22E7260E008D50BE /* DriversChatVC.swift in Sources */,
 				800F4C3622E7C22A009B93A2 /* anchor.swift in Sources */,
 				8043477622C4FCA500551FD4 /* CategoriesCell.swift in Sources */,
+				80D6B0C4231C670F00F3BD45 /* InOutTables.swift in Sources */,
 				800F4C2F22E7C206009B93A2 /* orderViewController.swift in Sources */,
 				800F4C3522E7C22A009B93A2 /* colour.swift in Sources */,
 				800F4C2E22E7C206009B93A2 /* splachViewController.swift in Sources */,
+				80D6B0C3231C670F00F3BD45 /* InOutTablesData.swift in Sources */,
 				801D4FC822CABB7600532C52 /* TablesVC.swift in Sources */,
 				800F4C2C22E7C206009B93A2 /* jopsViewController.swift in Sources */,
 				8043476622C4F2C100551FD4 /* CategoriesVC.swift in Sources */,
 				80B2F9EE230C84CD00AF45AA /* proDetailsData.swift in Sources */,
 				8040B23122E737EB008D50BE /* OrdersCell.swift in Sources */,
 				804CF46422F2120A0059CC6B /* Login.swift in Sources */,
+				80D6B0CE231C813400F3BD45 /* KitchenData.swift in Sources */,
 				800F4C2B22E7C206009B93A2 /* startViewController.swift in Sources */,
 				80B2F9EF230C84CD00AF45AA /* proDetails.swift in Sources */,
 				80753D6C2308AC0000547821 /* Products.swift in Sources */,

@@ -1,30 +1,31 @@
 //
 //	Data.swift
 //
-//	Create by Aboelnaga on 19/8/2019
-//	Copyright © 2019. All rights reserved.
+//	Create by Aboelnaga on 26/8/2019
+
 
 import Foundation 
 import ObjectMapper
 
 
-class proDetailsData : NSObject, NSCoding, Mappable{
+class InOutTablesData : NSObject, NSCoding, Mappable{
 
 	var iD : Int?
-	var details : String?
-	var images : [AnyObject]?
-	var inFavourite : Bool?
 	var mainImg : String?
 	var name : String?
 	var price : Int?
 	var priceOffer : Int?
-	var proSize : [AnyObject]?
+	var quantity : Int?
 	var sellerId : Int?
 	var sellerName : String?
+	var sizeId : Int?
+	var sizeName : String?
+	var tableId : Int?
+	var total : Int?
 
 
 	class func newInstance(map: Map) -> Mappable?{
-		return proDetailsData()
+		return InOutTablesData()
 	}
 	required init?(map: Map){}
 	private override init(){}
@@ -32,31 +33,34 @@ class proDetailsData : NSObject, NSCoding, Mappable{
 	func mapping(map: Map)
 	{
 		iD <- map["ID"]
-		details <- map["details"]
-		images <- map["images"]
-		inFavourite <- map["in_favourite"]
 		mainImg <- map["main_img"]
 		name <- map["name"]
 		price <- map["price"]
 		priceOffer <- map["price_offer"]
-		proSize <- map["pro_size"]
+		quantity <- map["quantity"]
 		sellerId <- map["seller_id"]
 		sellerName <- map["seller_name"]
+		sizeId <- map["size_id"]
+		sizeName <- map["size_name"]
+		tableId <- map["table_id"]
+		total <- map["total"]
 		
 	}
+
     @objc required init(coder aDecoder: NSCoder)
 	{
          iD = aDecoder.decodeObject(forKey: "ID") as? Int
-         details = aDecoder.decodeObject(forKey: "details") as? String
-         images = aDecoder.decodeObject(forKey: "images") as? [AnyObject]
-         inFavourite = aDecoder.decodeObject(forKey: "in_favourite") as? Bool
          mainImg = aDecoder.decodeObject(forKey: "main_img") as? String
          name = aDecoder.decodeObject(forKey: "name") as? String
          price = aDecoder.decodeObject(forKey: "price") as? Int
          priceOffer = aDecoder.decodeObject(forKey: "price_offer") as? Int
-         proSize = aDecoder.decodeObject(forKey: "pro_size") as? [AnyObject]
+         quantity = aDecoder.decodeObject(forKey: "quantity") as? Int
          sellerId = aDecoder.decodeObject(forKey: "seller_id") as? Int
          sellerName = aDecoder.decodeObject(forKey: "seller_name") as? String
+         sizeId = aDecoder.decodeObject(forKey: "size_id") as? Int
+         sizeName = aDecoder.decodeObject(forKey: "size_name") as? String
+         tableId = aDecoder.decodeObject(forKey: "table_id") as? Int
+         total = aDecoder.decodeObject(forKey: "total") as? Int
 
 	}
 
@@ -64,15 +68,6 @@ class proDetailsData : NSObject, NSCoding, Mappable{
 	{
 		if iD != nil{
 			aCoder.encode(iD, forKey: "ID")
-		}
-		if details != nil{
-			aCoder.encode(details, forKey: "details")
-		}
-		if images != nil{
-			aCoder.encode(images, forKey: "images")
-		}
-		if inFavourite != nil{
-			aCoder.encode(inFavourite, forKey: "in_favourite")
 		}
 		if mainImg != nil{
 			aCoder.encode(mainImg, forKey: "main_img")
@@ -86,14 +81,26 @@ class proDetailsData : NSObject, NSCoding, Mappable{
 		if priceOffer != nil{
 			aCoder.encode(priceOffer, forKey: "price_offer")
 		}
-		if proSize != nil{
-			aCoder.encode(proSize, forKey: "pro_size")
+		if quantity != nil{
+			aCoder.encode(quantity, forKey: "quantity")
 		}
 		if sellerId != nil{
 			aCoder.encode(sellerId, forKey: "seller_id")
 		}
 		if sellerName != nil{
 			aCoder.encode(sellerName, forKey: "seller_name")
+		}
+		if sizeId != nil{
+			aCoder.encode(sizeId, forKey: "size_id")
+		}
+		if sizeName != nil{
+			aCoder.encode(sizeName, forKey: "size_name")
+		}
+		if tableId != nil{
+			aCoder.encode(tableId, forKey: "table_id")
+		}
+		if total != nil{
+			aCoder.encode(total, forKey: "total")
 		}
 
 	}

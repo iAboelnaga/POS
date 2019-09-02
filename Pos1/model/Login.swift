@@ -52,10 +52,6 @@ class Login : NSObject, NSCoding, Mappable{
 		
 	}
 
-    /**
-    * NSCoding required initializer.
-    * Fills the data from the passed decoder
-    */
     @objc required init(coder aDecoder: NSCoder)
 	{
          iD = aDecoder.decodeObject(forKey: "ID") as? Int
@@ -76,10 +72,6 @@ class Login : NSObject, NSCoding, Mappable{
 
 	}
 
-    /**
-    * NSCoding required method.
-    * Encodes mode properties into the decoder
-    */
     @objc func encode(with aCoder: NSCoder)
 	{
 		if iD != nil{

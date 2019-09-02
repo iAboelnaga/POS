@@ -185,7 +185,8 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
             let cell = swappingCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! swappingCollectionViewCell
         cell.nextButton.tag = indexPath.row
         cell.nextButton.addTarget(self, action: #selector(nextButtonFunc), for:.touchUpInside)
-        
+        //cell.foodCollectionView.numberOfItems(inSection: 3)
+        //cell.foodCollectionView.reloadData()
         return cell
         }
     

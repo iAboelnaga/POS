@@ -1,70 +1,64 @@
 //
 //	Data.swift
 //
-//	Create by Aboelnaga on 19/8/2019
-//	Copyright © 2019. All rights reserved.
+//	Create by Aboelnaga on 1/9/2019
+
 
 import Foundation 
 import ObjectMapper
 
 
-class OrdersData : NSObject, NSCoding, Mappable{
+class KitchenData : NSObject, NSCoding, Mappable{
 
+	var iD : Int?
 	var datePayment : String?
-	var delivery : Bool?
-	var orderId : Int?
 	var paytype : String?
 	var price : Int?
 	var priceDelivery : Int?
 	var pricePro : Int?
+	var productName : String?
 	var quantity : Int?
-	var tableId : Int?
 
 
 	class func newInstance(map: Map) -> Mappable?{
-		return OrdersData()
+		return KitchenData()
 	}
 	required init?(map: Map){}
 	private override init(){}
 
 	func mapping(map: Map)
 	{
+		iD <- map["ID"]
 		datePayment <- map["date_payment"]
-		delivery <- map["delivery"]
-		orderId <- map["order_id"]
 		paytype <- map["paytype"]
 		price <- map["price"]
 		priceDelivery <- map["price_delivery"]
 		pricePro <- map["price_pro"]
+		productName <- map["product_name"]
 		quantity <- map["quantity"]
-		tableId <- map["table_id"]
 		
 	}
 
     @objc required init(coder aDecoder: NSCoder)
 	{
+         iD = aDecoder.decodeObject(forKey: "ID") as? Int
          datePayment = aDecoder.decodeObject(forKey: "date_payment") as? String
-         delivery = aDecoder.decodeObject(forKey: "delivery") as? Bool
-         orderId = aDecoder.decodeObject(forKey: "order_id") as? Int
          paytype = aDecoder.decodeObject(forKey: "paytype") as? String
          price = aDecoder.decodeObject(forKey: "price") as? Int
          priceDelivery = aDecoder.decodeObject(forKey: "price_delivery") as? Int
          pricePro = aDecoder.decodeObject(forKey: "price_pro") as? Int
+         productName = aDecoder.decodeObject(forKey: "product_name") as? String
          quantity = aDecoder.decodeObject(forKey: "quantity") as? Int
-         tableId = aDecoder.decodeObject(forKey: "table_id") as? Int
 
 	}
 
     @objc func encode(with aCoder: NSCoder)
 	{
+		if iD != nil{
+			aCoder.encode(iD, forKey: "ID")
+		}
 		if datePayment != nil{
 			aCoder.encode(datePayment, forKey: "date_payment")
-		}
-		if delivery != nil{
-			aCoder.encode(delivery, forKey: "delivery")
-		}
-		if orderId != nil{
-			aCoder.encode(orderId, forKey: "order_id")
 		}
 		if paytype != nil{
 			aCoder.encode(paytype, forKey: "paytype")
@@ -78,11 +72,11 @@ class OrdersData : NSObject, NSCoding, Mappable{
 		if pricePro != nil{
 			aCoder.encode(pricePro, forKey: "price_pro")
 		}
+		if productName != nil{
+			aCoder.encode(productName, forKey: "product_name")
+		}
 		if quantity != nil{
 			aCoder.encode(quantity, forKey: "quantity")
-		}
-		if tableId != nil{
-			aCoder.encode(tableId, forKey: "table_id")
 		}
 
 	}

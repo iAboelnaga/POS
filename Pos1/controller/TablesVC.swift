@@ -14,11 +14,15 @@ class TablesVC: UIViewController {
     @IBOutlet weak var indoorCV: UICollectionView!
     @IBOutlet weak var outdoorCV: UICollectionView!
     
+    var obj : InOutTables?
+    var obj2 : InOutTables?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         indoorCV.register(UINib(nibName:"ProductsCell", bundle: .main), forCellWithReuseIdentifier: "ProductsCell")
         outdoorCV.register(UINib(nibName:"ProductsCell", bundle: .main), forCellWithReuseIdentifier: "ProductsCell")
-        
+        //handleRefresh()
+        //handleRefresh2()
     }
     @IBAction func backButton(_ sender: Any)
     {
@@ -28,17 +32,38 @@ class TablesVC: UIViewController {
         self.present(VC, animated: false, completion: nil)
     }
     
+    private func handleRefresh(){
+        APIsRequests.inTables(casher_id: "47", type: "indoor") { (error:Error?, obj:InOutTables?) in
+            if let obj = obj {
+                self.obj = obj
+                self.indoorCV.reloadData()
+            }
+        }
+    }
+    private func handleRefresh2(){
+        APIsRequests.inTables(casher_id: "47", type: "outdoor") { (error:Error?, obj:InOutTables?) in
+            if let obj = obj {
+                self.obj2 = obj
+                self.outdoorCV.reloadData()
+            }
+        }
+    }
+    
 }
 extension TablesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == indoorCV
         {
+            //guard let  count = (obj?.data?.count) else{
+            //    return 0        }
             return 3
         }
         if collectionView == outdoorCV
         {
-            return 3
+            //guard let  count = (obj2?.data?.count) else{
+            //    return 0        }
+            return 4
         }
         return 0
     }

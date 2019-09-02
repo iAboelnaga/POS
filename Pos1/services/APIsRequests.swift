@@ -143,6 +143,67 @@ class APIsRequests: NSObject {
                 }
             })
     }
+    class func inTables(casher_id:String, type:String, completion:@escaping(_ _error:Error?, _ obj:InOutTables?)->Void){
+        let url = "http://mrcashier.net/json_user/tables.php?"
+        let parameters = [
+            "casher_id" : casher_id,
+            "lang" : "en",
+            "type" : type
+            ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode:200..<300).responseObject(completionHandler: { (response: DataResponse<InOutTables>) in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, nil)
+                    print(error)
+                case.success(let value):
+                    print(value.status ?? "Nothing Happened")
+                    completion(nil, response.result.value)
+                    
+                }
+            })
+    }
+    class func kitchen(kitchen_id:String, completion:@escaping(_ _error:Error?, _ obj:Kitchen?)->Void){
+        let url = "http://mrcashier.net/json_user/kitchen.php?"
+        let parameters = [
+            "kitchen_id" : kitchen_id,
+            "lang" : "en"
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode:200..<300).responseObject(completionHandler: { (response: DataResponse<Kitchen>) in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, nil)
+                    print(error)
+                case.success(let value):
+                    print(value.status ?? "Nothing Happened")
+                    completion(nil, response.result.value)
+                    
+                }
+            })
+    }
+    class func invoices(type_invoice:String, completion:@escaping(_ _error:Error?, _ obj:Invoice?)->Void){
+        let url = "http://mrcashier.net/json_user/invoice.php?"
+        let parameters = [
+            "lang" : "en",
+            "type_invoice" : type_invoice
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode:200..<300).responseObject(completionHandler: { (response: DataResponse<Invoice>) in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, nil)
+                    print(error)
+                case.success(let value):
+                    print(value.status ?? "Nothing Happened")
+                    completion(nil, response.result.value)
+                    
+                }
+            })
+    }
     class func logout(user_id:Int, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
         let url = "http://mrcashier.net/json_user/logout.php?"
         let parameters = ["user_id" : user_id]
