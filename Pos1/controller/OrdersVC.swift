@@ -58,11 +58,13 @@ extension OrdersVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
             var VC = DeliveryVC()
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             VC = storyBoard.instantiateViewController(withIdentifier: "DeliveryVC") as! DeliveryVC
+            VC.type_invoice = 1
             self.present(VC, animated: false, completion: nil)
         case 2:
             var VC = DeliveryVC()
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             VC = storyBoard.instantiateViewController(withIdentifier: "DeliveryVC") as! DeliveryVC
+            VC.type_invoice = 3
             self.present(VC, animated: false, completion: nil)
             case 3:
                 var VC = InvoicesVC()

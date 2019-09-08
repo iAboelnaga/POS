@@ -12,4 +12,5 @@ class ChatCell: UICollectionViewCell {
     
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
+    
 }

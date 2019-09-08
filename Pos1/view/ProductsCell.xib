@@ -92,6 +92,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="154" height="177"/>
+            <connections>
+                <outlet property="proDetails" destination="81x-Qn-hhc" id="qg9-WY-luR"/>
+                <outlet property="proName" destination="Ufm-nA-LQW" id="V0t-ot-SWu"/>
+                <outlet property="proPrice" destination="SQf-64-TiE" id="u7f-6D-T82"/>
+                <outlet property="tabelNum" destination="LM7-ie-bWg" id="nJT-Em-xYm"/>
+            </connections>
             <point key="canvasLocation" x="116.8" y="109.29535232383809"/>
         </collectionViewCell>
     </objects>

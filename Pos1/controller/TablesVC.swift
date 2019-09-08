@@ -21,8 +21,8 @@ class TablesVC: UIViewController {
         super.viewDidLoad()
         indoorCV.register(UINib(nibName:"ProductsCell", bundle: .main), forCellWithReuseIdentifier: "ProductsCell")
         outdoorCV.register(UINib(nibName:"ProductsCell", bundle: .main), forCellWithReuseIdentifier: "ProductsCell")
-        //handleRefresh()
-        //handleRefresh2()
+        handleRefresh()
+        handleRefresh2()
     }
     @IBAction func backButton(_ sender: Any)
     {
@@ -55,15 +55,15 @@ extension TablesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == indoorCV
         {
-            //guard let  count = (obj?.data?.count) else{
-            //    return 0        }
-            return 3
+            guard let  count = (obj?.data?.count) else{
+                return 0        }
+            return count
         }
         if collectionView == outdoorCV
         {
-            //guard let  count = (obj2?.data?.count) else{
-            //    return 0        }
-            return 4
+            guard let  count = (obj2?.data?.count) else{
+                return 0        }
+            return count
         }
         return 0
     }
@@ -73,42 +73,37 @@ extension TablesVC: UICollectionViewDelegate, UICollectionViewDataSource {
         if collectionView == indoorCV
         {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCell", for: indexPath) as? ProductsCell
+            
+            cell.tabelNum.text = "Table \(obj?.data?[indexPath.row].tableId ?? "-")"
+            cell.proName.text = obj?.data?[indexPath.row].productName
+            cell.proDetails.text = obj?.data?[indexPath.row].datePayment
+            cell.proPrice.text = "\((obj?.data?[indexPath.row].price)!)"
         }
         if collectionView == outdoorCV
         {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCell", for: indexPath) as? ProductsCell
+            
+            cell.tabelNum.text = "Table \(obj2?.data?[indexPath.row].tableId ?? "-")"
+            cell.proName.text = obj2?.data?[indexPath.row].productName
+            cell.proDetails.text = obj2?.data?[indexPath.row].datePayment
+            cell.proPrice.text = "\((obj2?.data?[indexPath.row].price)!)"
+
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == indoorCV
         {
-        switch indexPath.row {
-        case 0:
             let VC = scrollViewController()
+            VC.table_id = obj?.data?[indexPath.row].tableId
             self.present(VC, animated: false, completion: nil)
-        case 1:
-            let VC = scrollViewController()
-            self.present(VC, animated: false, completion: nil)
-        case 2:
-            let VC = scrollViewController()
-            self.present(VC, animated: false, completion: nil)
-        default:
-            print("ERORR")
-        }
+        
         }
         if collectionView == outdoorCV
         {
-            switch indexPath.row {
-            case 0:
-                let VC = scrollViewController()
-                self.present(VC, animated: false, completion: nil)
-            case 1:
-                let VC = scrollViewController()
-                self.present(VC, animated: false, completion: nil)
-            default:
-                print("ERORR")
-            }
+            let VC = scrollViewController()
+            VC.table_id = obj2?.data?[indexPath.row].tableId
+            self.present(VC, animated: false, completion: nil)
         }
-    }
+}
 }

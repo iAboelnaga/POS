@@ -13,6 +13,7 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
     var obj : MainCategories?
     var pro : Products?
     var i = 0
+    var table_id : String?
     let reuseIdentifier = "cellId"
     
     override func viewDidLoad() {

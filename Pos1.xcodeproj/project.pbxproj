@@ -51,10 +51,12 @@
 		80B2F9EB230C84BC00AF45AA /* OrdersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2F9E7230C84BC00AF45AA /* OrdersData.swift */; };
 		80B2F9EE230C84CD00AF45AA /* proDetailsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2F9EC230C84CD00AF45AA /* proDetailsData.swift */; };
 		80B2F9EF230C84CD00AF45AA /* proDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2F9ED230C84CD00AF45AA /* proDetails.swift */; };
+		80BE1B8D23258B88003659AF /* InOutTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE1B8B23258B88003659AF /* InOutTables.swift */; };
+		80BE1B8E23258B88003659AF /* InOutTablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE1B8C23258B88003659AF /* InOutTablesData.swift */; };
+		80BE1B922325B06F003659AF /* Drivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE1B902325B06F003659AF /* Drivers.swift */; };
+		80BE1B932325B06F003659AF /* DriversData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE1B912325B06F003659AF /* DriversData.swift */; };
 		80C61D6522CCDDCC00B488B0 /* KitchenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C61D6422CCDDCC00B488B0 /* KitchenVC.swift */; };
 		80C61D6722CCDEDE00B488B0 /* KitchenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C61D6622CCDEDE00B488B0 /* KitchenCell.swift */; };
-		80D6B0C3231C670F00F3BD45 /* InOutTablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */; };
-		80D6B0C4231C670F00F3BD45 /* InOutTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C2231C670F00F3BD45 /* InOutTables.swift */; };
 		80D6B0C9231C812300F3BD45 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C7231C812200F3BD45 /* Invoice.swift */; };
 		80D6B0CA231C812300F3BD45 /* InvoiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0C8231C812300F3BD45 /* InvoiceData.swift */; };
 		80D6B0CD231C813400F3BD45 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B0CB231C813400F3BD45 /* Kitchen.swift */; };
@@ -109,10 +111,12 @@
 		80B2F9E7230C84BC00AF45AA /* OrdersData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersData.swift; sourceTree = "<group>"; };
 		80B2F9EC230C84CD00AF45AA /* proDetailsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proDetailsData.swift; sourceTree = "<group>"; };
 		80B2F9ED230C84CD00AF45AA /* proDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proDetails.swift; sourceTree = "<group>"; };
+		80BE1B8B23258B88003659AF /* InOutTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTables.swift; sourceTree = "<group>"; };
+		80BE1B8C23258B88003659AF /* InOutTablesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTablesData.swift; sourceTree = "<group>"; };
+		80BE1B902325B06F003659AF /* Drivers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drivers.swift; sourceTree = "<group>"; };
+		80BE1B912325B06F003659AF /* DriversData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversData.swift; sourceTree = "<group>"; };
 		80C61D6422CCDDCC00B488B0 /* KitchenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenVC.swift; sourceTree = "<group>"; };
 		80C61D6622CCDEDE00B488B0 /* KitchenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenCell.swift; sourceTree = "<group>"; };
-		80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTablesData.swift; sourceTree = "<group>"; };
-		80D6B0C2231C670F00F3BD45 /* InOutTables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InOutTables.swift; sourceTree = "<group>"; };
 		80D6B0C7231C812200F3BD45 /* Invoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
 		80D6B0C8231C812300F3BD45 /* InvoiceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceData.swift; sourceTree = "<group>"; };
 		80D6B0CB231C813400F3BD45 /* Kitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
@@ -263,9 +267,12 @@
 		80A1C6DA22C910DC00178D3D /* model */ = {
 			isa = PBXGroup;
 			children = (
+				80BE1B8F2325B031003659AF /* Drivers */,
 				80D6B0C6231C809300F3BD45 /* kitchen */,
 				80D6B0C5231C809000F3BD45 /* invoices */,
 				80D6B0C0231C66EF00F3BD45 /* tables */,
+				80BE1B8B23258B88003659AF /* InOutTables.swift */,
+				80BE1B8C23258B88003659AF /* InOutTablesData.swift */,
 				80B2F9E3230C847C00AF45AA /* order */,
 				80753D682308ABE200547821 /* products */,
 				80753D632308AA7D00547821 /* categories */,
@@ -285,11 +292,18 @@
 			path = order;
 			sourceTree = "<group>";
 		};
+		80BE1B8F2325B031003659AF /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				80BE1B902325B06F003659AF /* Drivers.swift */,
+				80BE1B912325B06F003659AF /* DriversData.swift */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
 		80D6B0C0231C66EF00F3BD45 /* tables */ = {
 			isa = PBXGroup;
 			children = (
-				80D6B0C2231C670F00F3BD45 /* InOutTables.swift */,
-				80D6B0C1231C670F00F3BD45 /* InOutTablesData.swift */,
 			);
 			path = tables;
 			sourceTree = "<group>";
@@ -459,6 +473,7 @@
 				8040B22E22E72656008D50BE /* DriversCell.swift in Sources */,
 				80D6B0C9231C812300F3BD45 /* Invoice.swift in Sources */,
 				80A1C6D722C910AE00178D3D /* OrdersVC.swift in Sources */,
+				80BE1B932325B06F003659AF /* DriversData.swift in Sources */,
 				801D4FC522CA89F200532C52 /* ProductsCell.swift in Sources */,
 				80C61D6522CCDDCC00B488B0 /* KitchenVC.swift in Sources */,
 				80D6B0CD231C813400F3BD45 /* Kitchen.swift in Sources */,
@@ -470,17 +485,17 @@
 				800F4C2D22E7C206009B93A2 /* scrollViewController.swift in Sources */,
 				805B6D9822E88CC30097FCD6 /* DeliveryVC.swift in Sources */,
 				8041EBF222CB86E900C83A4B /* AddNewEmpVC.swift in Sources */,
+				80BE1B922325B06F003659AF /* Drivers.swift in Sources */,
 				8040B22A22E7260E008D50BE /* DriversChatVC.swift in Sources */,
 				800F4C3622E7C22A009B93A2 /* anchor.swift in Sources */,
 				8043477622C4FCA500551FD4 /* CategoriesCell.swift in Sources */,
-				80D6B0C4231C670F00F3BD45 /* InOutTables.swift in Sources */,
 				800F4C2F22E7C206009B93A2 /* orderViewController.swift in Sources */,
 				800F4C3522E7C22A009B93A2 /* colour.swift in Sources */,
 				800F4C2E22E7C206009B93A2 /* splachViewController.swift in Sources */,
-				80D6B0C3231C670F00F3BD45 /* InOutTablesData.swift in Sources */,
 				801D4FC822CABB7600532C52 /* TablesVC.swift in Sources */,
 				800F4C2C22E7C206009B93A2 /* jopsViewController.swift in Sources */,
 				8043476622C4F2C100551FD4 /* CategoriesVC.swift in Sources */,
+				80BE1B8D23258B88003659AF /* InOutTables.swift in Sources */,
 				80B2F9EE230C84CD00AF45AA /* proDetailsData.swift in Sources */,
 				8040B23122E737EB008D50BE /* OrdersCell.swift in Sources */,
 				804CF46422F2120A0059CC6B /* Login.swift in Sources */,
@@ -499,6 +514,7 @@
 				800F4C2922E7C206009B93A2 /* logOutViewController.swift in Sources */,
 				80C61D6722CCDEDE00B488B0 /* KitchenCell.swift in Sources */,
 				80753D6B2308AC0000547821 /* ProductsData.swift in Sources */,
+				80BE1B8E23258B88003659AF /* InOutTablesData.swift in Sources */,
 				800F4C3822E7C22A009B93A2 /* seconderyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

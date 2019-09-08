@@ -204,6 +204,65 @@ class APIsRequests: NSObject {
                 }
             })
     }
+    class func drivers(completion:@escaping(_ _error:Error?, _ obj:Drivers?)->Void){
+        let url = "http://mrcashier.net/json_user/drivers.php?"
+        let parameters = [
+            "lang" : "en"
+        ]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .validate(statusCode:200..<300).responseObject(completionHandler: { (response: DataResponse<Drivers>) in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, nil)
+                    print(error)
+                case.success(let value):
+                    print(value.status ?? "Nothing Happened")
+                    completion(nil, response.result.value)
+                    
+                }
+            })
+    }
+    
+    class func payment(user_id:String, payment_type:Int, full_name:String, address:String, city:String, country:String, zip_code:String, shipping_method:String, delivery:Bool, save_address:Bool, table_id:String, type_invoice:Int, driver_id:String, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
+        let url = "http://mrcashier.net/json_user/payment.php?"
+        let parameters = [
+            "lang" : "en",
+            "user_id" : user_id,
+            "payment_type" : payment_type,
+            "full_name" : full_name,
+            "address" : address,
+            "city" : city,
+            "country" : country,
+            "zip_code" : zip_code,
+            "shipping_method" : shipping_method,
+            "delivery" : delivery,
+            "save_address" : save_address,
+            "table_id" : table_id,
+            "type_invoice" : type_invoice,
+            "driver_id" : driver_id
+            ] as [String : Any]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            //.validate(statusCode:200..<300)
+            .responseJSON{ response in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, false)
+                    print(error)
+                case.success(let value):
+                    let json = JSON(value)
+                    if let code = json["message"].string{
+                        print(code)
+                    }
+                    let def = UserDefaults.standard
+                    def.setValue(nil, forKey: "userID")
+                    def.synchronize()
+                    
+                    completion(nil,true)
+                }
+        }
+    }
     class func logout(user_id:Int, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
         let url = "http://mrcashier.net/json_user/logout.php?"
         let parameters = ["user_id" : user_id]
