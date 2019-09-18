@@ -14,7 +14,10 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
     var pro : Products?
     var i = 0
     var table_id : String?
+    var dep_id : Int?
     let reuseIdentifier = "cellId"
+    let cellId = "cellId"
+    let o : swappingCollectionViewCell? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +30,7 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
         APIsRequests.categories(user_id: "47") { (error:Error?, obj:MainCategories?) in
             if let obj = obj {
                 self.obj = obj
-                self.BurgerButton.setTitle(obj.data?[0].name, for: .normal)
-                self.saladButton.setTitle(obj.data?[1].name, for: .normal)
-                self.fruitsButton.setTitle(obj.data?[2].name, for: .normal)
-            }
-        }
-    }
-    private func handleRefresh2(dep_id: Int){
-        APIsRequests.products(dep_id: dep_id, user_id: "47") { (error:Error?, pro:Products?) in
-            if let pro = pro {
-                self.pro = pro
+                self.sectionsCollectionView.reloadData()
             }
         }
     }
@@ -54,101 +48,26 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
     }()
     @objc func backButtonFunc() {
         dismiss(animated: true, completion: nil)
-        /*var VC = OrdersVC()
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        VC = storyBoard.instantiateViewController(withIdentifier: "OrdersVC") as! OrdersVC
-        self.present(VC, animated: false, completion: nil)*/
-    }
-    lazy var BurgerButton : UIButton = {
-        let button = UIButton()
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.white.cgColor
-        button.tintColor = .darkGray
-        button.setTitle(obj?.data?[0].name, for: .normal)
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(BurgerButtonFunc), for:.touchUpInside)
-        return button
-    }()
-    @objc func BurgerButtonFunc() {
-        let indexPath = IndexPath(item: 0, section: 0)
-        i = 0
-        self.handleRefresh2(dep_id: 0)
-        self.swappingCollectionView.reloadData()
-        self.swappingCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
-        BurgerButton.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
-        BurgerButton.setTitleColor(UIColor.white, for: .normal)
-        saladButton.backgroundColor = UIColor.clear
-        fruitsButton.backgroundColor = UIColor.clear
-        fruitsButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-        saladButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-    }
-    lazy var saladButton : UIButton = {
-        let button = UIButton()
-        button.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-//        button.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.white.cgColor
-        button.tintColor = .darkGray
-        button.setTitle(obj?.data?[1].name, for: .normal)
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(saladButtonFunc), for:.touchUpInside)
-        return button
-    }()
-    @objc func saladButtonFunc() {
-        let indexPath = IndexPath(item: 1, section: 0)
-        i = 1
-        self.handleRefresh2(dep_id: 1)
-        self.swappingCollectionView.reloadData()
-        self.swappingCollectionView.scrollToItem(at: indexPath, at: .right, animated: true)
-        saladButton.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
-        saladButton.setTitleColor(UIColor.white, for: .normal)
-        BurgerButton.backgroundColor = UIColor.clear
-        fruitsButton.backgroundColor = UIColor.clear
-        BurgerButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-        fruitsButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-        print(i)
-    }
-    lazy var fruitsButton : UIButton = {
-        let button = UIButton()
-        button.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-        button.backgroundColor = UIColor.clear
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.white.cgColor
-        button.tintColor = .darkGray
-        button.setTitle(obj?.data?[2].name, for: .normal)
-        button.layer.cornerRadius = 25
-        button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(fruitsButtonFunc), for:.touchUpInside)
-        return button
-    }()
-    @objc func fruitsButtonFunc() {
-        let indexPath = IndexPath(item: 2, section: 0)
-        i = 2
-        self.handleRefresh2(dep_id: 2)
-        self.swappingCollectionView.reloadData()
-        self.swappingCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-        fruitsButton.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
-        fruitsButton.setTitleColor(UIColor.white, for: .normal)
-        BurgerButton.backgroundColor = UIColor.clear
-        saladButton.backgroundColor = UIColor.clear
-        BurgerButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
-        saladButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
     }
     let swappingCollectionView : UICollectionView = {
         
         let collectionViewLayout = UICollectionViewFlowLayout()
-        let collectioView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        collectioView.isScrollEnabled = false
-        collectioView.isPagingEnabled = true
-        collectioView.backgroundColor = UIColor.rgb(red: 251, green: 175, blue: 2)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.isScrollEnabled = false
+        collectionView.isPagingEnabled = true
         collectionViewLayout.scrollDirection = .horizontal
-        collectioView.backgroundColor = .clear
-        collectioView.translatesAutoresizingMaskIntoConstraints = false
-        return collectioView
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    let sectionsCollectionView : UICollectionView = {
+        
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionViewLayout.scrollDirection = .horizontal
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
     
     let viewOfCollection = UIView()
@@ -158,50 +77,123 @@ class scrollViewController: UIViewController, UICollectionViewDelegate, UICollec
         present(orderViewController(), animated: true, completion: nil)
     }
     func setupView (){
-        //self.handleRefresh()
-    self.swappingCollectionView.register(swappingCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.swappingCollectionView.register(swappingCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         swappingCollectionView.delegate = self
         swappingCollectionView.dataSource = self
+        self.sectionsCollectionView.register(SectionsCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        sectionsCollectionView.delegate = self
+        sectionsCollectionView.dataSource = self
         detailView.addSubview(backButton)
         view.addSubview(scrollView)
         scrollView.addSubview(detailView)
         scrollView.addSubview(viewOfCollection)
-        detailView.addSubview(BurgerButton)
-        detailView.addSubview(saladButton)
-        detailView.addSubview(fruitsButton)
+        detailView.addSubview(sectionsCollectionView)
         viewOfCollection.addSubview(swappingCollectionView)
-        backButton.anchor(top: detailView.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 20, height: 40)
+        backButton.anchor(top: detailView.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: -5, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 20, height: 40)
         scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -40, paddingRight: 0, width: 0, height: 0)
-        detailView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 180)
-        BurgerButton.anchor(top: detailView.topAnchor, left: detailView.leftAnchor, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: view.frame.width/3 - 10, height: 48)
-        fruitsButton.anchor(top: detailView.topAnchor, left: nil, bottom: nil, right: detailView.rightAnchor, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: view.frame.width/3 - 10, height: 48)
-        saladButton.anchor(top: detailView.topAnchor, left: BurgerButton.rightAnchor, bottom: nil, right: fruitsButton.leftAnchor, paddingTop: 100, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 48)
+        detailView.anchor(top: scrollView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 80, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 80)
+        sectionsCollectionView.anchor(top: detailView.topAnchor, left: detailView.leftAnchor, bottom: detailView.bottomAnchor, right: detailView.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         viewOfCollection.anchor(top: detailView.bottomAnchor, left: view.leftAnchor, bottom: scrollView.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1430)
         swappingCollectionView.anchor(top: viewOfCollection.topAnchor, left: viewOfCollection.leftAnchor, bottom: viewOfCollection.bottomAnchor, right: viewOfCollection.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == swappingCollectionView{
+            return 3
+        }
+        else  if collectionView == sectionsCollectionView{
+            guard let  count = (obj?.data?.count) else{
+                return 0        }
+            return count
+        }
         return 3
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = swappingCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! swappingCollectionViewCell
+        let cell = swappingCollectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! swappingCollectionViewCell
+        let sectionsCell = sectionsCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SectionsCollectionViewCell
         cell.nextButton.tag = indexPath.row
         cell.nextButton.addTarget(self, action: #selector(nextButtonFunc), for:.touchUpInside)
-        //cell.foodCollectionView.numberOfItems(inSection: 3)
-        //cell.foodCollectionView.reloadData()
-        return cell
+
+        if collectionView == swappingCollectionView {
+
+            return cell
         }
+        else if collectionView == sectionsCollectionView {
+            
+            sectionsCell.catName.text = obj?.data?[indexPath.row].name
+            let def = UserDefaults.standard
+            def.setValue(table_id, forKey: "table_id")
+            def.synchronize()
+        
+            return sectionsCell
+        }
+        return cell
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        if collectionView == swappingCollectionView {
             return 0
         }
+        else if collectionView == sectionsCollectionView {
+            return 10
+        }
+        return 0
+        
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == swappingCollectionView {
             return 0
         }
+        else if collectionView == sectionsCollectionView {
+            return 10
+        }
+        return 0
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == swappingCollectionView {
             return CGSize(width: collectionView.frame.width  , height: collectionView.frame.height )
         }
+        else if collectionView == sectionsCollectionView {
+            return CGSize(width: collectionView.frame.width / 3.2 , height: collectionView.frame.height)
+        }
+        return CGSize(width: collectionView.frame.width , height: collectionView.frame.height)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == swappingCollectionView {
+            
+        }
+        else if collectionView == sectionsCollectionView {
+            if indexPath.row == 0 {
+                print("1")
+                let def = UserDefaults.standard
+                def.setValue(obj?.data?[indexPath.row].id, forKey: "dep_id")
+                def.synchronize()
+                NotificationCenter.default.post(name: NSNotification.Name("load"), object: nil)
+            }
+            else if indexPath.row == 1{
+                print("2")
+                let def = UserDefaults.standard
+                def.setValue(obj?.data?[indexPath.row].id, forKey: "dep_id")
+                def.synchronize()
+                NotificationCenter.default.post(name: NSNotification.Name("load"), object: nil)
+            }
+            else if indexPath.row == 2{
+                print("3")
+                let def = UserDefaults.standard
+                def.setValue(obj?.data?[indexPath.row].id, forKey: "dep_id")
+                def.synchronize()
+                NotificationCenter.default.post(name: NSNotification.Name("load"), object: nil)
+            }
+            else if indexPath.row == 3{
+                print("4")
+                let def = UserDefaults.standard
+                def.setValue(obj?.data?[indexPath.row].id, forKey: "dep_id")
+                def.synchronize()
+                NotificationCenter.default.post(name: NSNotification.Name("load"), object: nil)
+            }
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top:0 ,left: 0, bottom: 0, right: 0)
     }
 }
-

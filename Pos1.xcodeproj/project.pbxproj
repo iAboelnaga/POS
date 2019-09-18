@@ -35,8 +35,10 @@
 		8043476B22C4F2C700551FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8043476A22C4F2C700551FD4 /* Assets.xcassets */; };
 		8043476E22C4F2C700551FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8043476C22C4F2C700551FD4 /* LaunchScreen.storyboard */; };
 		8043477622C4FCA500551FD4 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043477522C4FCA500551FD4 /* CategoriesCell.swift */; };
+		804AE2B0232D124B00D36C75 /* SectionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804AE2AF232D124B00D36C75 /* SectionsCollectionViewCell.swift */; };
 		804CF46222F20B8E0059CC6B /* APIsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804CF46122F20B8E0059CC6B /* APIsRequests.swift */; };
 		804CF46422F2120A0059CC6B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804CF46322F2120A0059CC6B /* Login.swift */; };
+		804D8E7A2331103C0003B720 /* Faces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 804D8E792331103C0003B720 /* Faces.mlmodel */; };
 		805B6D9822E88CC30097FCD6 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B6D9722E88CC30097FCD6 /* DeliveryVC.swift */; };
 		80753D662308AA9500547821 /* MainCategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80753D642308AA9500547821 /* MainCategoriesData.swift */; };
 		80753D672308AA9500547821 /* MainCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80753D652308AA9500547821 /* MainCategories.swift */; };
@@ -95,8 +97,10 @@
 		8043476D22C4F2C700551FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8043476F22C4F2C700551FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8043477522C4FCA500551FD4 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
+		804AE2AF232D124B00D36C75 /* SectionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		804CF46122F20B8E0059CC6B /* APIsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsRequests.swift; sourceTree = "<group>"; };
 		804CF46322F2120A0059CC6B /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		804D8E792331103C0003B720 /* Faces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Faces.mlmodel; sourceTree = "<group>"; };
 		805B6D9722E88CC30097FCD6 /* DeliveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryVC.swift; sourceTree = "<group>"; };
 		80753D642308AA9500547821 /* MainCategoriesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoriesData.swift; sourceTree = "<group>"; };
 		80753D652308AA9500547821 /* MainCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategories.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				8040B22D22E72656008D50BE /* DriversCell.swift */,
 				8040B22F22E737EB008D50BE /* OrdersCell.swift */,
 				8040B23022E737EB008D50BE /* OrdersCell.xib */,
+				804AE2AF232D124B00D36C75 /* SectionsCollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -271,12 +276,11 @@
 				80D6B0C6231C809300F3BD45 /* kitchen */,
 				80D6B0C5231C809000F3BD45 /* invoices */,
 				80D6B0C0231C66EF00F3BD45 /* tables */,
-				80BE1B8B23258B88003659AF /* InOutTables.swift */,
-				80BE1B8C23258B88003659AF /* InOutTablesData.swift */,
 				80B2F9E3230C847C00AF45AA /* order */,
 				80753D682308ABE200547821 /* products */,
 				80753D632308AA7D00547821 /* categories */,
 				804CF46322F2120A0059CC6B /* Login.swift */,
+				804D8E792331103C0003B720 /* Faces.mlmodel */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -304,6 +308,8 @@
 		80D6B0C0231C66EF00F3BD45 /* tables */ = {
 			isa = PBXGroup;
 			children = (
+				80BE1B8B23258B88003659AF /* InOutTables.swift */,
+				80BE1B8C23258B88003659AF /* InOutTablesData.swift */,
 			);
 			path = tables;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${PODS_ROOT}/SFaceCompare/SFaceCompare/SameFace.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -432,6 +439,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SameFace.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +484,7 @@
 				80BE1B932325B06F003659AF /* DriversData.swift in Sources */,
 				801D4FC522CA89F200532C52 /* ProductsCell.swift in Sources */,
 				80C61D6522CCDDCC00B488B0 /* KitchenVC.swift in Sources */,
+				804AE2B0232D124B00D36C75 /* SectionsCollectionViewCell.swift in Sources */,
 				80D6B0CD231C813400F3BD45 /* Kitchen.swift in Sources */,
 				804CF46222F20B8E0059CC6B /* APIsRequests.swift in Sources */,
 				80B2F9E9230C84BC00AF45AA /* OrderDetails.swift in Sources */,
@@ -504,6 +513,7 @@
 				80B2F9EF230C84CD00AF45AA /* proDetails.swift in Sources */,
 				80753D6C2308AC0000547821 /* Products.swift in Sources */,
 				800F4C3722E7C22A009B93A2 /* roundPhoto.swift in Sources */,
+				804D8E7A2331103C0003B720 /* Faces.mlmodel in Sources */,
 				80753D662308AA9500547821 /* MainCategoriesData.swift in Sources */,
 				800F4C3922E7C22A009B93A2 /* swappingCollectionViewCell.swift in Sources */,
 				80B2F9EA230C84BC00AF45AA /* OrderDetailsData.swift in Sources */,

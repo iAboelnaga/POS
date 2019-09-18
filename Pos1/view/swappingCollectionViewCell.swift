@@ -9,12 +9,22 @@
 import UIKit
 
 class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate {
+    
+    var pro : Products?
+    var size_id:Int = 8
+    var pro_id : Int?
+    
     let cellId = "cellId"
     let reuseCell = "cell"
+    
     var delegate: CustomCellDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         scrollViewView()
+        handleRefresh2(dep_id: 1)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList(notification:)), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,6 +117,19 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         button.addTarget(self, action: #selector(smallButtonFunc), for:.touchUpInside)
         return button
     }()
+    private func handleRefresh2(dep_id: Int){
+        APIsRequests.products(dep_id: dep_id, user_id: "47") { (error:Error?, pro:Products?) in
+            if let pro = pro {
+                self.pro = pro
+                self.foodCollectionView.reloadData()
+            }
+        }
+    }
+    @objc func loadList(notification: NSNotification) {
+        var depId:Int? = UserDefaults.standard.object(forKey: "dep_id") as! Int
+        print("dep_id = \((depId) ?? 1)")
+        handleRefresh2(dep_id: depId ?? 1)
+    }
     @objc func smallButtonFunc() {
         smallButton.backgroundColor = UIColor.rgb(red: 8, green: 0, blue: 64)
         smallButton.setTitleColor(UIColor.white, for: .normal)
@@ -114,6 +137,7 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         largeButton.backgroundColor = UIColor.clear
         meduimButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
         largeButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
+        self.size_id = 7
     }
     lazy var meduimButton : UIButton = {
         let button = UIButton()
@@ -135,6 +159,7 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         largeButton.backgroundColor = UIColor.clear
         smallButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
         largeButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
+        self.size_id = 8
     }
     lazy var largeButton : UIButton = {
         let button = UIButton()
@@ -156,6 +181,7 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         meduimButton.backgroundColor = UIColor.clear
         smallButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
         meduimButton.setTitleColor(UIColor.rgb(red: 8, green: 0, blue: 64), for: .normal)
+        self.size_id = 9
     }
     lazy var plusButton : UIButton = {
         let button = UIButton()
@@ -322,6 +348,65 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     }()
     @objc func nextButtonFunc() {
         delegate?.sharePressed(cell: self)
+        guard let quantity = resultLblForItems.text, resultLblForItems.text != "0" else {
+            show(message: "Please choose quantity")
+            return }
+        guard let proId = pro_id, pro_id != 0 else {
+            show(message: "Please Choose Product")
+            return }
+        var tableId:String? = UserDefaults.standard.object(forKey: "table_id") as! String
+        APIsRequests.addBasket(casher_id: "47", pro_id: proId, quantity: quantity, size_id: size_id, table_id: tableId ?? "1") { (error:Error?, success:Bool) in
+            if success {
+                print(tableId)
+                self.show(message: "ADD successfully")
+            }
+            else {
+                self.show(message: "Faild")
+            }
+        }
+    }
+    func show(message: String) {
+        let toastContainer = UIView(frame: CGRect())
+        toastContainer.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastContainer.alpha = 0.0
+        toastContainer.layer.cornerRadius = 25;
+        toastContainer.clipsToBounds  =  true
+        
+        let toastLabel = UILabel(frame: CGRect())
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font.withSize(12.0)
+        toastLabel.text = message
+        toastLabel.clipsToBounds  =  true
+        toastLabel.numberOfLines = 0
+        
+        toastContainer.addSubview(toastLabel)
+        viewOfCellScroll.addSubview(toastContainer)
+        //self.view.addSubview(toastContainer)
+        
+        toastLabel.translatesAutoresizingMaskIntoConstraints = false
+        toastContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        let a1 = NSLayoutConstraint(item: toastLabel, attribute: .leading, relatedBy: .equal, toItem: toastContainer, attribute: .leading, multiplier: 1, constant: 15)
+        let a2 = NSLayoutConstraint(item: toastLabel, attribute: .trailing, relatedBy: .equal, toItem: toastContainer, attribute: .trailing, multiplier: 1, constant: -15)
+        let a3 = NSLayoutConstraint(item: toastLabel, attribute: .bottom, relatedBy: .equal, toItem: toastContainer, attribute: .bottom, multiplier: 1, constant: -15)
+        let a4 = NSLayoutConstraint(item: toastLabel, attribute: .top, relatedBy: .equal, toItem: toastContainer, attribute: .top, multiplier: 1, constant: 15)
+        toastContainer.addConstraints([a1, a2, a3, a4])
+        
+        let c1 = NSLayoutConstraint(item: toastContainer, attribute: .leading, relatedBy: .equal, toItem: self.viewOfCellScroll, attribute: .leading, multiplier: 1, constant: 65)
+        let c2 = NSLayoutConstraint(item: toastContainer, attribute: .trailing, relatedBy: .equal, toItem: self.viewOfCellScroll, attribute: .trailing, multiplier: 1, constant: -65)
+        let c3 = NSLayoutConstraint(item: toastContainer, attribute: .bottom, relatedBy: .equal, toItem: self.viewOfCellScroll, attribute: .bottom, multiplier: 1, constant: -75)
+        self.viewOfCellScroll.addConstraints([c1, c2, c3])
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+            toastContainer.alpha = 1.0
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseOut, animations: {
+                toastContainer.alpha = 0.0
+            }, completion: {_ in
+                toastContainer.removeFromSuperview()
+            })
+        })
     }
     let priceItemLabel : UILabel = {
         let label = UILabel()
@@ -443,11 +528,19 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        guard let  count = (pro?.data?.count) else { return 0 }
+        return count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = foodCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! seconderyCollectionViewCell
-        cell.productNameLabel.text = "LALALALALA"
+        cell.productNameLabel.text = pro?.data?[indexPath.row].name
+        cell.contntLabel.text = pro?.data?[indexPath.row].branchName
+        cell.priceLabel.text = "\((pro?.data?[indexPath.row].price)!)"
+        
+        let imageString = (pro?.data?[indexPath.row].mainImg) ?? "http://mrcashier.net/images/products/15627514392.png"
+        let imagesUrl = URL(string: imageString)
+        cell.profileImageView.kf.setImage(with: imagesUrl)
+        
         return cell
     }
     
@@ -469,6 +562,7 @@ class swappingCollectionViewCell: UICollectionViewCell, UICollectionViewDelegate
         else {
             cell?.selectedImageView.image = nil
         }
+        pro_id = pro?.data?[indexPath.row].iD
     }
     
 }

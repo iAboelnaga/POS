@@ -11,10 +11,19 @@ import UIKit
 class logOutViewController: UIViewController {
 
     let token:Int = UserDefaults.standard.object(forKey: "userID") as! Int
+    let img:String = UserDefaults.standard.object(forKey: "userImg") as! String
+    let type:String = UserDefaults.standard.object(forKey: "userType") as! String
+    let name:String = UserDefaults.standard.object(forKey: "userName") as! String
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        let imagesUrl = URL(string: img)
+        profileImageView.kf.setImage(with: imagesUrl)
+        profileNameLabel.text = name
+        jopNameLabel.text = type
+        
         view.backgroundColor = UIColor.rgb(red: 216, green: 216, blue: 216)
     }
     let viewOfLogOut : UIView = {

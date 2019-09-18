@@ -13,4 +13,5 @@ target 'Pos1' do
 	pod 'ObjectMapper'
 	pod 'AlamofireObjectMapper'
 	pod 'IQKeyboardManagerSwift'
+	pod 'SFaceCompare'
 end

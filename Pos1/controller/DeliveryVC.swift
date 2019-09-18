@@ -24,7 +24,7 @@ class DeliveryVC: UIViewController {
     
     var payment_type : Int = 0
     var type_invoice : Int?
-    var driver_id : Int?
+    var driver_id : String?
     var obj : Drivers?
     
     override func viewDidLoad() {
@@ -49,12 +49,19 @@ class DeliveryVC: UIViewController {
     @IBAction func next(_ sender: Any)
     {
         guard let fullName = name.text, !fullName.isEmpty else { return }
-        guard let city = area.text, !city.isEmpty else { return }
+        guard let area = area.text, !area.isEmpty else { return }
         guard let mobile = mobile.text, !mobile.isEmpty else { return }
+        guard let block = blockNum.text, !block.isEmpty else { return }
+        guard let street = streetNum.text, !street.isEmpty else { return }
+        guard let avenue = avenueNum.text, !avenue.isEmpty else { return }
+        guard let building = buildingNum.text, !building.isEmpty else { return }
+        guard let flat = flatNum.text, !flat.isEmpty else { return }
+        guard let notes = notes.text, !notes.isEmpty else { return }
         
-        APIsRequests.payment(user_id: "47", payment_type: payment_type, full_name: fullName, address: "", city: city, country: "", zip_code: mobile, shipping_method: "", delivery: true, save_address: true, table_id: "", type_invoice: type_invoice ?? 2, driver_id: "58") { (error:Error?, success:Bool) in
+        APIsRequests.payment(user_id: "47", payment_type: payment_type, full_name: fullName, area: area, block: block, street: street, avenue: avenue, shipping_method: "", delivery: true, building: building, table_id: "3", type_invoice: type_invoice!, driver_id: driver_id!, flat: flat, notes: notes) { (error:Error?, success:Bool) in
             if success{
                 self.show(message: "succcess")
+                self.payment_type = 0
                 self.present(scrollViewController(), animated: true, completion: nil)
             }else{
                 self.show(message: "incorect data")
@@ -154,7 +161,7 @@ extension DeliveryVC: UICollectionViewDelegate, UICollectionViewDataSource {
 }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
                 
-        driver_id = obj?.data?[indexPath.row].restaurantsMainId
+        driver_id = obj?.data?[indexPath.row].driverId
         print(driver_id)
     }
 }

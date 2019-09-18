@@ -2,8 +2,6 @@
 //	Data.swift
 //
 //	Create by Aboelnaga on 8/9/2019
-//	Copyright © 2019. All rights reserved.
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
 import Foundation 
 import ObjectMapper
@@ -20,6 +18,7 @@ class DriversData : NSObject, NSCoding, Mappable{
 	var typeRegisteration : String?
 	var userMobile : String?
 	var username : String?
+    var driverId : String?
 
 
 	class func newInstance(map: Map) -> Mappable?{
@@ -39,13 +38,10 @@ class DriversData : NSObject, NSCoding, Mappable{
 		typeRegisteration <- map["type_registeration"]
 		userMobile <- map["user_mobile"]
 		username <- map["username"]
+        driverId <- map["Driver_id"]
 		
 	}
 
-    /**
-    * NSCoding required initializer.
-    * Fills the data from the passed decoder
-    */
     @objc required init(coder aDecoder: NSCoder)
 	{
          email = aDecoder.decodeObject(forKey: "email") as? String
@@ -57,13 +53,10 @@ class DriversData : NSObject, NSCoding, Mappable{
          typeRegisteration = aDecoder.decodeObject(forKey: "type_registeration") as? String
          userMobile = aDecoder.decodeObject(forKey: "user_mobile") as? String
          username = aDecoder.decodeObject(forKey: "username") as? String
+        driverId = aDecoder.decodeObject(forKey: "Driver_id") as? String
 
 	}
 
-    /**
-    * NSCoding required method.
-    * Encodes mode properties into the decoder
-    */
     @objc func encode(with aCoder: NSCoder)
 	{
 		if email != nil{
@@ -93,6 +86,9 @@ class DriversData : NSObject, NSCoding, Mappable{
 		if username != nil{
 			aCoder.encode(username, forKey: "username")
 		}
+        if driverId != nil{
+            aCoder.encode(driverId, forKey: "Driver_id")
+        }
 
 	}
 

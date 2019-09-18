@@ -32,9 +32,14 @@ class APIsRequests: NSObject {
                 case.success(let value):
                     print(value.message ?? "Nothing Happened")
                      let user_id = value.iD
-                    print("access_token: \(String(describing: value.iD))")
+                     let user_img = value.img
+                     let user_name = value.username
+                     let user_type = value.typeRegisteration
                         let def = UserDefaults.standard
                         def.setValue(user_id, forKey: "userID")
+                        def.setValue(user_img, forKey: "userImg")
+                        def.setValue(user_name, forKey: "userName")
+                        def.setValue(user_type, forKey: "userType")
                         def.synchronize()
                     completion(nil, response.result.value)
                     
@@ -82,6 +87,32 @@ class APIsRequests: NSObject {
                     
                 }
             })
+    }
+    class func addBasket(casher_id:String, pro_id:Int, quantity:String, size_id:Int, table_id:String, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
+        let url = "http://mrcashier.net/json_user/add_basket.php?"
+        let parameters = [
+            "casher_id" : casher_id,
+            "pro_id" : pro_id,
+            "quantity" : quantity,
+            "size_id" : size_id,
+            "table_id" : table_id
+            ] as [String : Any]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            //.validate(statusCode:200..<300)
+            .responseJSON{ response in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, false)
+                    print(error)
+                case.success(let value):
+                    let json = JSON(value)
+                    if let code = json["message"].string{
+                        print(code)
+                    }
+                    completion(nil,true)
+                }
+        }
     }
     class func proDetails(pro_id:Int, completion:@escaping(_ _error:Error?, _ obj:proDetails?)->Void){
         let url = "http://mrcashier.net/json_user/proDetails.php?"
@@ -224,23 +255,25 @@ class APIsRequests: NSObject {
             })
     }
     
-    class func payment(user_id:String, payment_type:Int, full_name:String, address:String, city:String, country:String, zip_code:String, shipping_method:String, delivery:Bool, save_address:Bool, table_id:String, type_invoice:Int, driver_id:String, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
+    class func payment(user_id:String, payment_type:Int, full_name:String, area:String, block:String, street:String, avenue:String, shipping_method:String, delivery:Bool, building:String, table_id:String, type_invoice:Int, driver_id:String, flat:String, notes:String, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
         let url = "http://mrcashier.net/json_user/payment.php?"
         let parameters = [
             "lang" : "en",
             "user_id" : user_id,
             "payment_type" : payment_type,
             "full_name" : full_name,
-            "address" : address,
-            "city" : city,
-            "country" : country,
-            "zip_code" : zip_code,
             "shipping_method" : shipping_method,
             "delivery" : delivery,
-            "save_address" : save_address,
             "table_id" : table_id,
             "type_invoice" : type_invoice,
-            "driver_id" : driver_id
+            "driver_id" : driver_id,
+            "area" : area,
+            "block" : block,
+            "street" : street,
+            "avenue" : avenue,
+            "building" : building,
+            "flat" : flat,
+            "notes" : notes
             ] as [String : Any]
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
             //.validate(statusCode:200..<300)
@@ -255,10 +288,33 @@ class APIsRequests: NSObject {
                     if let code = json["message"].string{
                         print(code)
                     }
-                    let def = UserDefaults.standard
-                    def.setValue(nil, forKey: "userID")
-                    def.synchronize()
-                    
+                    if let u = json["url_payment"].string{
+                        print(u)
+                    }
+                    completion(nil,true)
+                }
+        }
+    }
+    class func attendance(user_id:String, attendance_flage:Int, is_attendance:Bool, completion:@escaping(_ _error:Error?, _ success:Bool)->Void){
+        let url = "http://mrcashier.net/json_user/attendance.php?"
+        let parameters = [
+            "user_id" : user_id,
+            "lang" : "en",
+            "attendance_flage" : attendance_flage,
+            "is_attendance" : is_attendance
+            ] as [String : Any]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .responseJSON{ response in
+                switch response.result
+                {
+                case.failure(let error):
+                    completion(error, false)
+                    print(error)
+                case.success(let value):
+                    let json = JSON(value)
+                    if let code = json["message"].string{
+                        print(code)
+                    }
                     completion(nil,true)
                 }
         }
